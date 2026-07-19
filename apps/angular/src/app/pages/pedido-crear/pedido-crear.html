@@ -1,0 +1,55 @@
+<!-- <h3 *ngFor="let bebida of bebidas">{{bebida}}</h3> -->
+<h2>DATOS DEL PEDIDO</h2>
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <label><input type="checkbox" formControlName="checkDomicilio" />Es domicilio</label>
+        </div>
+        @if (!form.controls.checkDomicilio.value) {
+        <div class="col-sm-6">
+            <label for="tentacles">Mesa no:</label>
+            <input type="number" id="mesa" name="mesa" min="1" max="30" formControlName="mesa" />
+        </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <label for="floatingTextarea">Comentarios</label>
+            <textarea class="form-control" placeholder="Comentarios adicionales"
+                formControlName="comentarios"></textarea>
+        </div>
+    </div>
+</form>
+
+<br>
+`
+<h2>COMIDAS</h2>
+@for(comida of listaComidas; track comida.idProducto) {
+<app-producto-crear [productos]="productos"></app-producto-crear>
+<button class="btn btn-primary" (click)="borrarComida(comida)">Eliminar</button>
+}
+<br>
+<button class="btn btn-primary" (click)="agregarComida()">Agregar otro</button>
+
+<h2>BEBIDAS</h2>
+@for(bebida of listaBebidas; track bebida.idProducto) {
+<app-producto-crear [productos]="bebidas"></app-producto-crear>
+<button class="btn btn-primary" (click)="borrarBebida(bebida)">Eliminar</button>
+}
+<button class="btn btn-primary" (click)="agregarBebida()">Agregar otro</button>
+
+<br>
+<br>
+
+<!-- <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <app-producto [nombre]="'Chorizo'" [descripcion]="'Descripcion..'" [imagen]="'chorizo-arepa.jpeg'"
+            [tipoHabilitado]="true" [acompanamientoHabilitado]="true"></app-producto>
+    </div>
+    <div class="col-sm-6">
+        <app-producto [nombre]="'Hamburguesa'" [descripcion]="'Descripcion..'" [imagen]="'hamburguesa.jpeg'"
+            [tipoHabilitado]="true" [tamanoHabilitado]="true"></app-producto>
+    </div>
+</div> -->
+
+<button class="btn btn-primary" (click)="crearPedido()">Crear Pedido</button>

@@ -1,0 +1,17 @@
+<!-- Producto principal -->
+<select id="miSelect" [(ngModel)]="productoSeleccionado">
+    <option [ngValue]="null" disabled>Selecciona una opción...</option>
+    <option *ngFor="let producto of productos" [ngValue]="producto">
+        {{ producto.nombre }}
+    </option>
+</select>
+<!-- Acompañamiento: -->
+<select id="miSelect" [(ngModel)]="productoSeleccionado">
+    <option [ngValue]="null" disabled>Selecciona una opción...</option>
+    <option *ngFor="let producto of productos" [ngValue]="producto">
+        {{ producto.nombre }}
+    </option>
+</select>
+<!-- Comentarios: -->
+<!-- <label for="floatingTextarea">Comentarios</label>
+<textarea class="form-control" placeholder="Comentarios" formControlName="comentarios"></textarea> -->
