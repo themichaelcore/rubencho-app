@@ -8,6 +8,8 @@ namespace Rubencho.Application.Common.Context;
 /// </summary>
 public interface IRubenchoDbContext : IDbContext
 {
+    public DbSet<Acompanamiento> Acompanamientos { get; set; }
+
     public DbSet<Colaborador> Colaboradores { get; set; }
 
     //public DbSet<EstadoPedido> EstadoPedidos { get; set; }

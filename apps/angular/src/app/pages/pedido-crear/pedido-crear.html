@@ -22,11 +22,12 @@
 </form>
 
 <br>
-`
+
 <h2>COMIDAS</h2>
 @for(comida of listaComidas; track comida.idProducto) {
 <app-producto-crear [productos]="productos"></app-producto-crear>
 <button class="btn btn-primary" (click)="borrarComida(comida)">Eliminar</button>
+<br>
 }
 <br>
 <button class="btn btn-primary" (click)="agregarComida()">Agregar otro</button>
@@ -35,7 +36,9 @@
 @for(bebida of listaBebidas; track bebida.idProducto) {
 <app-producto-crear [productos]="bebidas"></app-producto-crear>
 <button class="btn btn-primary" (click)="borrarBebida(bebida)">Eliminar</button>
+<br>
 }
+<br>
 <button class="btn btn-primary" (click)="agregarBebida()">Agregar otro</button>
 
 <br>

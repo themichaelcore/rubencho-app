@@ -15,15 +15,19 @@ public partial class RubenchoDbContext : DbContext, IRubenchoDbContext
     {
     }
 
-    public DbSet<Colaborador> Colaboradores { get; set; }
+    public virtual DbSet<Acompanamiento> Acompanamientos { get; set; }
 
-    public DbSet<EstadoPedido> EstadoPedidos { get; set; }
+    public virtual DbSet<CategoriaProducto> CategoriaProductos { get; set; }
 
-    public DbSet<Pedido> Pedidos { get; set; }
+    public virtual DbSet<Colaborador> Colaboradores { get; set; }
 
-    public DbSet<Producto> Productos { get; set; }
+    public virtual DbSet<EstadoPedido> EstadoPedidos { get; set; }
 
-    public DbSet<ProductoPedido> ProductoPedidos { get; set; }
+    public virtual DbSet<Pedido> Pedidos { get; set; }
+
+    public virtual DbSet<Producto> Productos { get; set; }
+
+    public virtual DbSet<ProductoPedido> ProductoPedidos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -31,6 +35,24 @@ public partial class RubenchoDbContext : DbContext, IRubenchoDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Acompanamiento>(entity =>
+        {
+            entity.HasKey(e => e.IdAcompanamiento);
+
+            entity.ToTable("Acompanamiento");
+
+            entity.Property(e => e.Nombre).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<CategoriaProducto>(entity =>
+        {
+            entity.HasKey(e => e.IdCategoriaProducto);
+
+            entity.ToTable("CategoriaProducto");
+
+            entity.Property(e => e.Nombre).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<Colaborador>(entity =>
         {
             entity.HasKey(e => e.IdColaborador);
@@ -77,6 +99,11 @@ public partial class RubenchoDbContext : DbContext, IRubenchoDbContext
             entity.Property(e => e.Nombre)
                 .HasMaxLength(70)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.IdCategoriaProductoNavigation).WithMany(p => p.Productos)
+                .HasForeignKey(d => d.IdCategoriaProducto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Producto_CategoriaProducto");
         });
 
         modelBuilder.Entity<ProductoPedido>(entity =>
@@ -84,6 +111,8 @@ public partial class RubenchoDbContext : DbContext, IRubenchoDbContext
             entity.HasKey(e => e.IdProductoPedido);
 
             entity.ToTable("ProductoPedido");
+
+            entity.Property(e => e.Observaciones).HasMaxLength(100);
 
             entity.HasOne(d => d.IdPedidoNavigation).WithMany(p => p.ProductoPedidos)
                 .HasForeignKey(d => d.IdPedido)
