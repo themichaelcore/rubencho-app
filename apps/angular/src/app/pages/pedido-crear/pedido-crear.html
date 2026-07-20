@@ -25,7 +25,7 @@
 
 <h2>COMIDAS</h2>
 @for(comida of listaComidas; track comida.idProducto) {
-<app-producto-crear [productos]="productos"></app-producto-crear>
+<app-producto-crear [productos]="productos" [acompanamientos]="acompanamientos"></app-producto-crear>
 <button class="btn btn-primary" (click)="borrarComida(comida)">Eliminar</button>
 <br>
 }

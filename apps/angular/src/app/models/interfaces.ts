@@ -19,3 +19,8 @@ export interface Producto {
   idCategoriaProducto: number;
   acompanamiento: number;
 }
+
+export interface Acompanamiento {
+  idAcompanamiento: number;
+  nombre: string;
+}

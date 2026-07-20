@@ -23,13 +23,15 @@ export class DbOperations {
   constructor(private http: HttpClient) { }
 
   crearPedido(datos: BasePedido): Observable<any> {
-    this.apiUrl += '/pedido';
-    return this.http.post<any>(this.apiUrl, datos, { headers: this.headers });
+    return this.http.post<any>(this.apiUrl+'/pedido', datos, { headers: this.headers });
   }
 
   getProductos(): Observable<any> {
-    this.apiUrl += '/producto';    
-    return this.http.get<any>(this.apiUrl, { headers: this.headers });
+    return this.http.get<any>(this.apiUrl+'/producto', { headers: this.headers });
+  }
+  
+  getAcompanamientos(): Observable<any> {
+    return this.http.get<any>(this.apiUrl+'/acompanamiento', { headers: this.headers });
   }
 
 }

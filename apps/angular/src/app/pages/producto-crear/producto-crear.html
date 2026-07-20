@@ -7,12 +7,14 @@
     </option>
 </select>
 <!-- Acompañamiento: -->
-<select id="miSelect" [(ngModel)]="productoSeleccionado">
+@if(1==1) {
+<select id="miSelect">
     <option [ngValue]="null" disabled>Selecciona una opción...</option>
-    <option *ngFor="let producto of productos" [ngValue]="producto">
-        {{ producto.nombre }}
+    <option *ngFor="let acompanamiento of acompanamientos" [ngValue]="acompanamiento">
+        {{ acompanamiento.nombre }}
     </option>
 </select>
+}
 <form [formGroup]="form">
     <!-- Comentarios: -->
     <label for="floatingTextarea">Comentarios</label>

@@ -10,6 +10,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 })
 export class ProductoCrear {
   @Input() productos: any[] = [];
+  @Input() acompanamientos: any[] = [];
   
   productoSeleccionado: any = null;
   

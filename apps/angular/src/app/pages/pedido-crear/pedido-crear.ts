@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DbOperations } from '../../services/db-operations';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductoCrear } from "../producto-crear/producto-crear";
-import { BasePedido, Producto } from '../../models/interfaces';
+import { Acompanamiento, BasePedido, Producto } from '../../models/interfaces';
 
 @Component({
   selector: 'app-pedido-crear',
@@ -25,9 +25,11 @@ export class PedidoCrear {
   });
   productos: Producto[] = [];
   bebidas: Producto[] = [];
+  acompanamientos: Acompanamiento[] = [];
 
   constructor(private dbService: DbOperations) {
     this.getProductos();
+    this.getAcompanamientos();
   }
 
   crearPedido() {
@@ -64,6 +66,21 @@ export class PedidoCrear {
         console.log('¡Productos obtenidos!', respuesta);
         this.productos = respuesta.filter((producto: Producto) => producto.idCategoriaProducto == 1);
         this.bebidas = respuesta.filter((producto: Producto) => producto.idCategoriaProducto == 2);
+      },
+      error: (error) => {
+        console.error('Ocurrió un error al guardar:', error);
+      },
+      complete: () => {
+        console.log('Petición finalizada.');
+      }
+    });
+  }
+  
+  getAcompanamientos(){
+    this.dbService.getAcompanamientos().subscribe({
+      next: (respuesta) => {
+        console.log('¡Acompanamientos obtenidos!', respuesta);
+        this.acompanamientos = respuesta;
       },
       error: (error) => {
         console.error('Ocurrió un error al guardar:', error);
