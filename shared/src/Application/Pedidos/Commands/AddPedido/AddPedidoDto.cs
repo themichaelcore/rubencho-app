@@ -1,5 +1,5 @@
 ﻿using Rubencho.Application.Common.Mappings;
-using Rubencho.Application.Extensions;
+using Rubencho.Application.Pedidos.Commands.AddPedido;
 using Rubencho.Domain.Entities;
 
 namespace Rubencho.Application.Pedidos.Queries.GetPedidos;
@@ -21,12 +21,7 @@ public class AddPedidoDto : IMapTo<Pedido>
     public int? Mesa { get; set; }
 
     public bool? EsDomicilio { get; set; }
-
-    //public virtual Colaborador IdColaboradorNavigation { get; set; } = null!;
-
-    //public virtual EstadoPedido IdEstadoNavigation { get; set; } = null!;
-
-    //public virtual ICollection<ProductoPedido> ProductoPedidos { get; set; } = new List<ProductoPedido>();
+    public virtual ICollection<ProductoPedidoDto> ProductoPedidos { get; set; } = new List<ProductoPedidoDto>();
 
     public void Mapping(Profile profile)
     {

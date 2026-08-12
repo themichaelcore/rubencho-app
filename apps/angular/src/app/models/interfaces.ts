@@ -9,7 +9,14 @@ export interface Pedido {
   costo: number;
   mesa: number | undefined;
   esDomicilio: boolean;
-  productoPedidos: string[];
+  productoPedidos: ProductoPedido[];
+}
+
+export interface ProductoPedido {
+  index: number;
+  idProducto: number;
+  idAcompanamiento: number;
+  observaciones: string;
 }
 
 export interface Producto {
@@ -18,6 +25,7 @@ export interface Producto {
   precio: number;
   idCategoriaProducto: number;
   acompanamiento: number;
+  observaciones: string;
 }
 
 export interface Acompanamiento {

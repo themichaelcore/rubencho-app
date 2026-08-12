@@ -1,22 +1,23 @@
-<!-- Producto principal -->
-
-<select id="miSelect" [(ngModel)]="productoSeleccionado">
-    <option [ngValue]="null" disabled>Selecciona una opción...</option>
-    <option *ngFor="let producto of productos" [ngValue]="producto">
-        {{ producto.nombre }}
-    </option>
-</select>
-<!-- Acompañamiento: -->
-@if(1==1) {
-<select id="miSelect">
-    <option [ngValue]="null" disabled>Selecciona una opción...</option>
-    <option *ngFor="let acompanamiento of acompanamientos" [ngValue]="acompanamiento">
-        {{ acompanamiento.nombre }}
-    </option>
-</select>
-}
-<form [formGroup]="form">
+<form [formGroup]="miFormulario">
+    <!-- Producto principal -->
+    <select id="miSelect" formControlName="productoSeleccionado">
+        <option [ngValue]="null" disabled>Selecciona una opción...</option>
+        @for(producto of productos() || []; track producto) {
+        <h2>{{ producto.nombre }}</h2>
+        <option [ngValue]="producto.idProducto">{{ producto.nombre }}
+        </option>
+        }
+    </select>
+    <!-- Acompañamiento: -->
+    @if(mostrarCampoDependiente) {
+    <select id="miSelect" formControlName="acompanamientoSeleccionado">
+        <option [ngValue]="null" disabled>Selecciona una opción...</option>
+        @for(acompanamiento of acompanamientos() || []; track acompanamiento) {
+        <option [ngValue]="acompanamiento.idAcompanamiento">{{ acompanamiento.nombre }}
+        </option>
+        }
+    </select>
+    }
     <!-- Comentarios: -->
-    <label for="floatingTextarea">Comentarios</label>
     <textarea class="form-control" placeholder="Comentarios" formControlName="comentarios"></textarea>
 </form>

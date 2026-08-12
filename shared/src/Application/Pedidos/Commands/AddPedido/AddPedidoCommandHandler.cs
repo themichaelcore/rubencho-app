@@ -18,6 +18,7 @@ public class AddPedidoCommandHandler : IRequestHandler<AddPedidoCommand>
     {
         var pedido = mapper.Map<Pedido>(request.BasePedido);
         pedido.Fecha = DateTime.Now;
+        pedido.Costo = 0;
 
         await context.Pedidos.AddAsync(pedido, cancellationToken);
 
