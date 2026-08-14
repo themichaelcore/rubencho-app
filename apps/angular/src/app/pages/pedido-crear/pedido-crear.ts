@@ -3,10 +3,11 @@ import { DbOperations } from '../../services/db-operations';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductoCrear } from "../producto-crear/producto-crear";
 import { Acompanamiento, BasePedido, Producto, ProductoPedido } from '../../models/interfaces';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pedido-crear',
-  imports: [ReactiveFormsModule, ProductoCrear],
+  imports: [ReactiveFormsModule, ProductoCrear, CurrencyPipe],
   templateUrl: './pedido-crear.html',
   styleUrl: './pedido-crear.css',
 })
@@ -15,7 +16,6 @@ export class PedidoCrear {
   productos: Producto[] = [];
   bebidas: Producto[] = [];
   acompanamientos: Acompanamiento[] = [];
-
   costoTotal: number = 0;
   listaComidas: ProductoPedido[] = [];
   listaBebidas: ProductoPedido[] = [];
@@ -40,8 +40,6 @@ export class PedidoCrear {
         mesa: Number(this.form.controls.mesa.value),
         esDomicilio: this.form.controls.checkDomicilio.value ?? false,
         productoPedidos: this.listaComidas.concat(this.listaBebidas)
-        // productoPedidos: this.listaComidas.map((x: Producto) => ({ idProducto: x.idProducto, idAcompanamiento: x.acompanamiento, observaciones: x.observaciones ?? '' }))
-        //   .concat(this.listaBebidas.map((x: Producto) => ({ idProducto: x.idProducto, idAcompanamiento: x.acompanamiento, observaciones: x.observaciones ?? '' })))
       }
     };
 
@@ -103,6 +101,7 @@ export class PedidoCrear {
     const index = this.listaComidas.indexOf(comida);
     if (index > -1) {
       this.listaComidas.splice(index, 1);
+      this.actualizarCostoTotal();
     }
   }
 
@@ -110,6 +109,7 @@ export class PedidoCrear {
     const index = this.listaBebidas.indexOf(bebida);
     if (index > -1) {
       this.listaBebidas.splice(index, 1);
+      this.actualizarCostoTotal();
     }
   }
 
@@ -118,6 +118,7 @@ export class PedidoCrear {
     const index = this.listaComidas.findIndex(p => p.index === producto.index);
     if (index !== -1) {
       this.listaComidas[index] = producto;
+      this.actualizarCostoTotal();
     }
   }
 
@@ -126,6 +127,24 @@ export class PedidoCrear {
     const index = this.listaBebidas.findIndex(p => p.index === producto.index);
     if (index !== -1) {
       this.listaBebidas[index] = producto;
+      this.actualizarCostoTotal();
     }
+  }
+
+  actualizarCostoTotal() {    
+    let total = 0;
+    for (let comida of this.listaComidas) {
+      const producto = this.productos.find(p => p.idProducto === comida.idProducto);
+      if (producto) {
+        total += producto.precio;
+      }
+    }
+    for (let bebida of this.listaBebidas) {
+      const producto = this.bebidas.find(p => p.idProducto === bebida.idProducto);
+      if (producto) {
+        total += producto.precio;
+      }
+    }
+    this.costoTotal = total;
   }
 }

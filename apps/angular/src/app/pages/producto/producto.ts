@@ -8,11 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './producto.css',
 })
 export class Producto {
-  // @Input() nombre: string = '';
-  // @Input() descripcion: string = '';
-  // @Input() imagen: string = '';
-  // @Input() tipoHabilitado: boolean = false;
-  // @Input() acompanamientoHabilitado: boolean = false;
-  // @Input() tamanoHabilitado: boolean = false;
+  @Input() nombre: string = '';
+  @Input() descripcion: string = '';
+  @Input() imagen: string = '';
+  @Input() tipoHabilitado: boolean = false;
+  @Input() acompanamientoHabilitado: boolean = false;
+  @Input() tamanoHabilitado: boolean = false;
 
 }

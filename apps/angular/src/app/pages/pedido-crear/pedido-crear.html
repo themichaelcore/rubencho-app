@@ -1,4 +1,6 @@
 <h2>DATOS DEL PEDIDO</h2>
+
+<h4 class="labelCosto">Costo total: {{ costoTotal | currency:'COP':'symbol':'1.0-0'  }}</h4>
 <form [formGroup]="form">
     <div class="row">
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -22,25 +24,36 @@
 
 <br>
 
-<h2>COMIDAS</h2>
-@for(comida of listaComidas; track comida.index) {
-<app-producto-crear [productos]="productos" [acompanamientos]="acompanamientos" [index]="comida.index" (onProductoSet)="onComidaSet($event)"></app-producto-crear>
-<button class="btn btn-primary" (click)="borrarComida(comida)">Eliminar</button>
-<br>
-}
-<br>
-<button class="btn btn-primary" (click)="agregarComida()">Agregar otro</button>
+<div class="container">
+    <div class="title">
+        <h4>COMIDA</h4>
+        <button class="btn btn-primary btn-sm bi bi-plus-circle" (click)="agregarComida()"></button>
+    </div>
+    <div class="content">
+        @for(comida of listaComidas; track comida.index) {
+        <div class="card">
+            <app-producto-crear [productos]="productos" [acompanamientos]="acompanamientos" [index]="comida.index"
+                (onProductoSet)="onComidaSet($event)"></app-producto-crear>
+            <button class="btn btn-primary bi bi-x-circle-fill remove" (click)="borrarComida(comida)"></button>
+        </div>
+        }
+    </div>
+</div>
 
-<h2>BEBIDAS</h2>
-@for(bebida of listaBebidas; track bebida.index) {
-<app-producto-crear [productos]="bebidas" [index]="bebida.index" (onProductoSet)="onBebidaSet($event)"></app-producto-crear>
-<button class="btn btn-primary" (click)="borrarBebida(bebida)">Eliminar</button>
-<br>
-}
-<br>
-<button class="btn btn-primary" (click)="agregarBebida()">Agregar otro</button>
-
-<br>
-<br>
+<div class="container">
+    <div class="title">
+        <h4>BEBIDAS</h4>
+        <button class="btn btn-primary btn-sm bi bi-plus-circle" (click)="agregarBebida()"></button>
+    </div>
+    <div class="content">
+        @for(bebida of listaBebidas; track bebida.index) {
+        <div class="card">
+            <app-producto-crear [productos]="bebidas" [index]="bebida.index"
+    (onProductoSet)="onBebidaSet($event)"></app-producto-crear>
+            <button class="btn btn-primary bi bi-x-circle-fill remove" (click)="borrarBebida(bebida)"></button>
+        </div>
+        }
+    </div>
+</div>
 
 <button class="btn btn-primary" (click)="crearPedido()">Crear Pedido</button>

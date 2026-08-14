@@ -1,23 +1,25 @@
-<form [formGroup]="miFormulario">
-    <!-- Producto principal -->
-    <select id="miSelect" formControlName="productoSeleccionado">
-        <option [ngValue]="null" disabled>Selecciona una opción...</option>
-        @for(producto of productos() || []; track producto) {
-        <h2>{{ producto.nombre }}</h2>
-        <option [ngValue]="producto.idProducto">{{ producto.nombre }}
-        </option>
+<div class="container">
+    <form [formGroup]="miFormulario">
+        <!-- Producto principal -->
+        <select id="miSelect" formControlName="productoSeleccionado">
+            <option [ngValue]="null" disabled>Selecciona una opción...</option>
+            @for(producto of productos() || []; track producto) {
+            <h2>{{ producto.nombre }}</h2>
+            <option [ngValue]="producto.idProducto">{{ producto.nombre }}
+            </option>
+            }
+        </select>
+        <!-- Acompañamiento: -->
+        @if(mostrarCampoDependiente) {
+        <select id="miSelect" formControlName="acompanamientoSeleccionado">
+            <option [ngValue]="null" disabled>Selecciona una opción...</option>
+            @for(acompanamiento of acompanamientos() || []; track acompanamiento) {
+            <option [ngValue]="acompanamiento.idAcompanamiento">{{ acompanamiento.nombre }}
+            </option>
+            }
+        </select>
         }
-    </select>
-    <!-- Acompañamiento: -->
-    @if(mostrarCampoDependiente) {
-    <select id="miSelect" formControlName="acompanamientoSeleccionado">
-        <option [ngValue]="null" disabled>Selecciona una opción...</option>
-        @for(acompanamiento of acompanamientos() || []; track acompanamiento) {
-        <option [ngValue]="acompanamiento.idAcompanamiento">{{ acompanamiento.nombre }}
-        </option>
-        }
-    </select>
-    }
-    <!-- Comentarios: -->
-    <textarea class="form-control" placeholder="Comentarios" formControlName="comentarios"></textarea>
-</form>
+        <!-- Comentarios: -->
+        <textarea class="form-control" placeholder="Comentarios" formControlName="comentarios"></textarea>
+    </form>
+</div>
