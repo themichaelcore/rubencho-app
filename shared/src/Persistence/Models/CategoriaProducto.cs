@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+
 namespace Rubencho.Persistence.Models;
 
 public partial class CategoriaProducto

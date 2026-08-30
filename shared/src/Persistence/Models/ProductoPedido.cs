@@ -15,6 +15,8 @@ public partial class ProductoPedido
 
     public string? Observaciones { get; set; }
 
+    public virtual Acompanamiento? IdAcompanamientoNavigation { get; set; }
+
     public virtual Pedido IdPedidoNavigation { get; set; } = null!;
 
     public virtual Producto IdProductoNavigation { get; set; } = null!;
