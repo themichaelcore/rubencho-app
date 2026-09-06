@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card">
+        <div [style.background-color]="colorFondo">
+            <h4>Pedido #{{ pedido()?.idPedido }}</h4>
+        </div>
+        <div class="card-body">
+            <p>
+                @if(pedido()?.esDomicilio)
+                {
+                <strong>Domicilio</strong>
+                }
+                @else
+                {
+                <strong>Mesa:</strong> {{ pedido()?.mesa }}
+                }
+                <br>
+                <strong>Hora:</strong> {{ pedido()?.fecha | date:'short' }}
+                <br>
+                <strong>Costo:</strong> ${{ pedido()?.costo }}
+                <br>
+                <strong>Productos:</strong>
+                <br>
+                @for(producto of pedido()?.productoPedidos; track producto.index) {
+                    {{ producto?.nombreProducto }}
+                    @if(producto?.acompanamiento) {
+                        - {{ producto?.acompanamiento }}
+                    }
+                    @if(producto?.observaciones) {
+                        ({{ producto?.observaciones }})
+                    }
+                <br>
+                }
+                 @if(pedido()?.observaciones) {
+                    <strong>Observaciones:</strong> {{ pedido()?.observaciones }}
+                }
+            </p>
+        </div>
+    </div>
+</div>

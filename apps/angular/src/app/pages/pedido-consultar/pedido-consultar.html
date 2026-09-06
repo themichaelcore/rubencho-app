@@ -1,1 +1,17 @@
-<p> CONSULTAR PEDIDO</p>
+<div class="container">
+    <div class="title">
+        <h4>PEDIDOS</h4>
+    </div>
+    <div class="conversions">
+        <div class="creado"><h4>Creado</h4></div>
+        <div class="preparacion"><h4>En preparacion</h4></div>
+        <div class="camino"><h4>En camino</h4></div>
+        <div class="entregado"><h4>Entregado</h4></div>
+        <div class="bloqueado"><h4>Bloqueado</h4></div>
+    </div>
+    <div class="content">
+        @for(pedido of pedidos$ | async; track $index) {
+        <app-pedido-card [pedido]="pedido"></app-pedido-card>
+        }
+    </div>
+</div>

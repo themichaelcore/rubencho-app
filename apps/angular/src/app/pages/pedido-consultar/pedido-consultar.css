@@ -1,0 +1,39 @@
+
+.content {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    /* padding: 20px; */
+}
+
+.conversions{
+    padding-bottom: 20px;
+}
+
+.creado{
+    background-color: yellow;
+    width: 200px;
+}
+
+.preparacion{
+    background-color: orange;
+    width: 200px;
+}
+
+.camino{
+    background-color: cyan;
+    width: 200px;
+}
+
+.entregado{
+    background-color: rgb(2, 255, 6);
+    width: 200px;
+}
+
+.bloqueado{
+    background-color: red;
+    width: 200px;
+}

@@ -41,7 +41,6 @@ public partial class RubenchoDbContext : DbContext
 
             entity.ToTable("Acompanamiento");
 
-            entity.Property(e => e.IdAcompanamiento).ValueGeneratedNever();
             entity.Property(e => e.Nombre).HasMaxLength(50);
         });
 
@@ -117,6 +116,7 @@ public partial class RubenchoDbContext : DbContext
 
             entity.HasOne(d => d.IdAcompanamientoNavigation).WithMany(p => p.ProductoPedidos)
                 .HasForeignKey(d => d.IdAcompanamiento)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ProductoPedido_Acompanamiento");
 
             entity.HasOne(d => d.IdPedidoNavigation).WithMany(p => p.ProductoPedidos)

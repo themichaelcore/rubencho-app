@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductoCrear } from "../producto-crear/producto-crear";
 import { Acompanamiento, BasePedido, Producto, ProductoPedido } from '../../models/interfaces';
 import { CurrencyPipe } from '@angular/common';
+import { Notifications } from '../../services/notifications';
 
 @Component({
   selector: 'app-pedido-crear',
@@ -25,7 +26,7 @@ export class PedidoCrear {
     comentarios: new FormControl(''),
   });
 
-  constructor(private dbService: DbOperations) {
+  constructor(private dbService: DbOperations, private notifications: Notifications) {
     this.getProductos();
     this.getAcompanamientos();
   }
@@ -47,15 +48,23 @@ export class PedidoCrear {
 
     this.dbService.crearPedido(basePedido).subscribe({
       next: (respuesta) => {
-        // console.log('¡Registro creado con éxito!', respuesta);
+        this.notifications.success('¡Pedido creado!', 'La operación se realizó con éxito.');
+        this.borrarFormulario();
       },
       error: (error) => {
-        // console.error('Ocurrió un error al guardar:', error);
+        this.notifications.error('Error', 'Ocurrió un error al guardar el pedido.');
       },
       complete: () => {
         // console.log('Petición finalizada.');
       }
     });
+  }
+
+  borrarFormulario() {
+    this.form.reset();
+    this.listaComidas = [];
+    this.listaBebidas = [];
+    this.costoTotal = 0;
   }
 
   getProductos() {
@@ -131,7 +140,7 @@ export class PedidoCrear {
     }
   }
 
-  actualizarCostoTotal() {    
+  actualizarCostoTotal() {
     let total = 0;
     for (let comida of this.listaComidas) {
       const producto = this.productos.find(p => p.idProducto === comida.idProducto);

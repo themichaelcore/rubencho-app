@@ -34,4 +34,7 @@ export class DbOperations {
     return this.http.get<any>(this.apiUrl+'/acompanamiento', { headers: this.headers });
   }
 
+  getPedidos(): Observable<any> {
+    return this.http.get<any>(this.apiUrl+'/pedido', { headers: this.headers });
+  }
 }

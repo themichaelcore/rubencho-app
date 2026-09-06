@@ -21,11 +21,13 @@ public class PedidoDto : IMapFrom<Pedido>
 
     public bool? EsDomicilio { get; set; }
 
-    public virtual Colaborador IdColaboradorNavigation { get; set; } = null!;
+    public string? NombreColaborador { get; set; }
+
+    //public virtual Colaborador IdColaboradorNavigation { get; set; } = null!;
 
     public virtual EstadoPedido IdEstadoNavigation { get; set; } = null!;
 
-    public virtual ICollection<ProductoPedido> ProductoPedidos { get; set; } = new List<ProductoPedido>();
+    public virtual ICollection<ProductoPedidoDto> ProductoPedidos { get; set; } = new List<ProductoPedidoDto>();
 
     public void Mapping(Profile profile)
     {

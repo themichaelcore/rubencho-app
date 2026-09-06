@@ -114,6 +114,11 @@ public partial class RubenchoDbContext : DbContext, IRubenchoDbContext
 
             entity.Property(e => e.Observaciones).HasMaxLength(100);
 
+            entity.HasOne(d => d.IdAcompanamientoNavigation).WithMany(p => p.ProductoPedidos)
+                .HasForeignKey(d => d.IdAcompanamiento)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ProductoPedido_Acompanamiento");
+
             entity.HasOne(d => d.IdPedidoNavigation).WithMany(p => p.ProductoPedidos)
                 .HasForeignKey(d => d.IdPedido)
                 .OnDelete(DeleteBehavior.ClientSetNull)
