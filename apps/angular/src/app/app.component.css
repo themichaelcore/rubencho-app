@@ -1,0 +1,26 @@
+/* Asegura que el HTML y Body ocupen toda la pantalla */
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Evita scrolls dobles no deseados a nivel global */
+}
+
+/* Fuerza al navbar a comportarse como un bloque de ancho fijo */
+app-navbar {
+  width: 250px; /* Ajusta el ancho deseado para tu menú */
+  flex-shrink: 0; /* Impide que el navbar se reduzca cuando falte espacio */
+  height: 100%;
+}
+
+.contenido-principal {
+  flex: 1; /* Ocupa automáticamente todo el ancho restante a la derecha */
+  height: 100%;
+  overflow-y: auto; /* Permite scroll vertical solo en la vista del router */
+  padding: 1.5rem; /* Espaciado interno para que el contenido no pegue a los bordes */
+}

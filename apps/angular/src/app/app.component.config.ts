@@ -1,7 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { registerLocaleData } from '@angular/common';
+import { IMAGE_LOADER, ImageLoaderConfig, registerLocaleData } from '@angular/common';
 import localeEsCO from '@angular/common/locales/es-CO';
 import { LOCALE_ID } from '@angular/core';
 
@@ -11,6 +11,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    { provide: LOCALE_ID, useValue: 'es-CO' }
+    { provide: LOCALE_ID, useValue: 'es-CO' },
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => {
+        return `assets/${config.src}`; // Ruta base para tus recursos locales
+      }
+    }
   ]
 };

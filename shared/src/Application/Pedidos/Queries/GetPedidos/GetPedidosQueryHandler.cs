@@ -24,32 +24,9 @@ public class GetPedidosQueryHandler : IRequestHandler<GetPedidosQuery, IEnumerab
             .AsQueryable()
             .Include(x => x.IdColaboradorNavigation)
             .Include(x => x.ProductoPedidos)
-            .ThenInclude(x => x.IdProductoNavigation)
-            //.Include(x => x.IdPedidoNavigation)
-            //.Include(x => x.IdAcompanamientoNavigation)
-            //.OrderBy(x => x.ProductoPedidos.Select(p => p.IdPedidoNavigation.Fecha).FirstOrDefault())
-            //.Select(x => new PedidoDto
-            //{
-            //    IdPedido = x.IdPedido,
-            //    Fecha = x.Fecha,
-            //    IdEstado = x.IdEstado,
-            //    IdColaborador = x.IdColaborador,
-            //    Observaciones = x.Observaciones,
-            //    Costo = x.Costo,
-            //    Mesa = x.Mesa,
-            //    EsDomicilio = x.EsDomicilio,
-            //    NombreColaborador = x.IdColaboradorNavigation.Nombre,
-            //    ProductoPedidos = new List<ProductoPedidoDto>
-            //    {
-            //        //new ProductoPedidoDto
-            //        //{
-            //        //    //IdProducto = x.IdProductoNavigation.IdProducto,
-            //        //    NombreProducto = x.ProductoPedidos.Nombre,
-            //        //    Acompanamiento = x.IdAcompanamientoNavigation.Nombre,
-            //        //    Observaciones = x.Observaciones
-            //        //}
-            //    }                
-            //})
+                .ThenInclude(x => x.IdProductoNavigation)
+            .Include(x => x.ProductoPedidos)
+                .ThenInclude(x => x.IdAcompanamientoNavigation)
             .ToListAsync(cancellationToken);
 
         var pedidosResult = mapper.Map<List<PedidoDto>>(pedidos);
