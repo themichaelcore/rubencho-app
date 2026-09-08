@@ -1,28 +1,8 @@
 <h2>DATOS DEL PEDIDO</h2>
 
 <h4 class="labelCosto">Costo total: {{ costoTotal | currency:'COP':'symbol':'1.0-0'  }}</h4>
-<form [formGroup]="form">
-    <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <label><input type="checkbox" formControlName="checkDomicilio" />Es domicilio</label>
-        </div>
-        @if (!form.controls.checkDomicilio.value) {
-        <div class="col-sm-6">
-            <label for="tentacles">Mesa no:</label>
-            <input type="number" id="mesa" name="mesa" min="1" max="30" formControlName="mesa" />
-        </div>
-        }
-    </div>
-    <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <label for="floatingTextarea">Comentarios</label>
-            <textarea class="form-control" placeholder="Comentarios adicionales"
-                formControlName="comentarios"></textarea>
-        </div>
-    </div>
-</form>
 
-<br>
+
 
 <div class="container">
     <div class="title">
@@ -55,5 +35,28 @@
         }
     </div>
 </div>
+
+<br>
+
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <label><input type="checkbox" formControlName="checkDomicilio" />Es domicilio</label>
+        </div>
+        @if (!form.controls.checkDomicilio.value) {
+        <div class="col-sm-6">
+            <label for="tentacles">Mesa no:</label>
+            <input type="number" id="mesa" name="mesa" min="1" max="30" formControlName="mesa" />
+        </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <label for="floatingTextarea">Comentarios</label>
+            <textarea class="form-control" placeholder="Comentarios adicionales"
+                formControlName="comentarios"></textarea>
+        </div>
+    </div>
+</form>
 
 <button class="btn btn-primary" (click)="crearPedido()">Crear Pedido</button>

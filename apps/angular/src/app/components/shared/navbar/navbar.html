@@ -1,37 +1,39 @@
 <nav class="vertical-menu">
-  <div class="menu-header">
-    <h3>RUBENCHO APP</h3>
-  </div>
-  <ul class="menu-list">
-    <li>
-      <a routerLink="/app" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
-        <span class="icon">📊</span> Inicio
-      </a>
-    </li>
-    <li>
-      <a routerLink="/pedidos/crear">
-        <span class="icon">📊</span> Crear Pedido
-      </a>
-    </li>
-    <li>
-      <a routerLink="/pedidos/consultar">
-        <span class="icon">📊</span> Consultar Pedidos
-      </a>
-    </li>
-     <li>
-      <a routerLink="/dashboard" routerLinkActive="active-link">
-        <span class="icon">📊</span> Estadisticas
-      </a>
-    </li>
-    <li>
-      <a routerLink="/profile" routerLinkActive="active-link">
-        <span class="icon">👤</span> Perfil
-      </a>
-    </li>
-    <li>
-      <a routerLink="/settings" routerLinkActive="active-link">
-        <span class="icon">⚙️</span> Configuración
-      </a>
-    </li>
-  </ul>
+    <div class="menu-header">
+        <img ngSrc="logo.jpeg" width="220" height="250" alt="logo"
+            priority>
+        <h3>RUBENCHO APP</h3>
+    </div>
+    <ul class="menu-list">
+        <li>
+            <a routerLink="/app" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <span class="icon">📊</span> Inicio
+            </a>
+        </li>
+        <li>
+            <a routerLink="/pedidos/crear">
+                <span class="icon">📊</span> Crear Pedido
+            </a>
+        </li>
+        <li>
+            <a routerLink="/pedidos/consultar">
+                <span class="icon">📊</span> Consultar Pedidos
+            </a>
+        </li>
+        <li>
+            <a routerLink="/dashboard" routerLinkActive="active-link">
+                <span class="icon">📊</span> Estadisticas
+            </a>
+        </li>
+        <li>
+            <a routerLink="/profile" routerLinkActive="active-link">
+                <span class="icon">👤</span> Perfil
+            </a>
+        </li>
+        <li>
+            <a routerLink="/settings" routerLinkActive="active-link">
+                <span class="icon">⚙️</span> Configuración
+            </a>
+        </li>
+    </ul>
 </nav>
